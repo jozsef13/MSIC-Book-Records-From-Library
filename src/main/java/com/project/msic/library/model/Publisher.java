@@ -1,5 +1,6 @@
 package com.project.msic.library.model;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,14 +17,10 @@ public class Publisher {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long publisherId;
+	private Long publisherId = -1L;
 	private String name;
 	@OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Book> publishedBooks;
-
-	public Publisher(String name) {
-		this.name = name;
-	}
 
 	public Long getPublisherId() {
 		return publisherId;
@@ -49,4 +46,25 @@ public class Publisher {
 		this.publishedBooks = publishedBooks;
 	}
 
+	@Override
+	public int hashCode() {
+		if (publisherId == -1) {
+			return super.hashCode();
+		}
+
+		return Objects.hash(publisherId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || publisherId == -1) {
+			return false;
+		}
+
+		if (obj instanceof Publisher) {
+			return publisherId == ((Publisher) obj).publisherId;
+		}
+
+		return false;
+	}
 }

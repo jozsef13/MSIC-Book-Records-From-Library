@@ -1,5 +1,6 @@
 package com.project.msic.library.model;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,20 +17,10 @@ public class Author {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long authorId;
-	private String firstName;
-	private String lastName;
-	private String nationality;
-	private String about;
+	private Long authorId = -1L;
+	private String name;
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Book> writtenBooks;
-
-	public Author(String firstName, String lastName, String nationality, String about) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.nationality = nationality;
-		this.about = about;
-	}
 
 	public Long getAuthorId() {
 		return authorId;
@@ -39,36 +30,12 @@ public class Author {
 		this.authorId = authorId;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getNationality() {
-		return nationality;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-
-	public String getAbout() {
-		return about;
-	}
-
-	public void setAbout(String about) {
-		this.about = about;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Set<Book> getWrittenBooks() {
@@ -77,6 +44,28 @@ public class Author {
 
 	public void setWrittenBooks(Set<Book> writtenBooks) {
 		this.writtenBooks = writtenBooks;
+	}
+
+	@Override
+	public int hashCode() {
+		if (authorId == -1) {
+			return super.hashCode();
+		}
+
+		return Objects.hash(authorId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || authorId == -1) {
+			return false;
+		}
+
+		if (obj instanceof Author) {
+			return authorId == ((Author) obj).authorId;
+		}
+
+		return false;
 	}
 
 }

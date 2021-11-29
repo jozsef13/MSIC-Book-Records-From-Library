@@ -1,5 +1,7 @@
 package com.project.msic.library.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,10 +17,8 @@ public class Book {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bookId;
+	private Long bookId = -1L;
 	private String title;
-	private String description;
-	private int year;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "authorId")
 	private Author author;
@@ -28,15 +28,14 @@ public class Book {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "publisherId")
 	private Publisher publisher;
+	private BookAvailability availability = BookAvailability.AVAILABLE;
 
-	public Book(String title, String description, int year, Author author, Category category,
-			Publisher publisher) {
-		this.title = title;
-		this.description = description;
-		this.year = year;
-		this.author = author;
-		this.category = category;
-		this.publisher = publisher;
+	public BookAvailability getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(BookAvailability availability) {
+		this.availability = availability;
 	}
 
 	public Long getBookId() {
@@ -53,22 +52,6 @@ public class Book {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
 	}
 
 	public Author getAuthor() {
@@ -95,4 +78,29 @@ public class Book {
 		this.publisher = publisher;
 	}
 
+	public boolean isNewBook() {
+		return bookId < 0;
+	}
+
+	@Override
+	public int hashCode() {
+		if (bookId == -1) {
+			return super.hashCode();
+		}
+
+		return Objects.hash(bookId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || bookId == -1) {
+			return false;
+		}
+
+		if (obj instanceof Book) {
+			return bookId == ((Book) obj).bookId;
+		}
+
+		return false;
+	}
 }
