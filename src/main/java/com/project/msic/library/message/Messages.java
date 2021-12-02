@@ -1,8 +1,12 @@
 package com.project.msic.library.message;
 
+/**
+ * An abstract class that hold all the static variables/constants for the texts
+ *
+ */
 public abstract class Messages {
 	// AboutView messages
-	public static final String ABOUT_VIEW_TEXT = " This application is using Vaadin version ";
+	public static final String ABOUT_VIEW_TEXT = " This application is a simulation of an online library management system. It is implemented using Java, Spring Boot and ";
 
 	// AuthorView messages
 	public static final String AUTHOR_SAVED_TEXT = "Author Saved.";
@@ -44,7 +48,7 @@ public abstract class Messages {
 	public static final String CATEGORY = "category";
 	public static final String BOOK_TITLE_COLUMN = "Book title";
 	public static final String NEW_BOOK_BUTTON_TEXT = "New Book";
-	public static final String FILTER_PLACEHOLDER_TEXT = "Filter name, availability or category";
+	public static final String FILTER_PLACEHOLDER_TEXT = "Filter name";
 	public static final String BOOK_ID_NUMBER_FORMAT_ERROR_TEXT = "There was a problem with the ID of this book. If the problem persists, please contact the administrator.";
 	public static final String ERROR_TITLE = "Error";
 

@@ -21,7 +21,7 @@ import de.codecamp.vaadin.serviceref.ServiceRef;
 /**
  * Admin view that is registered dynamically on admin user login.
  * <p>
- * Allows CRUD operations for the book categories.
+ * Allows CRUD operations for the book categories, atuhors and publishers.
  */
 @CssImport("./styles/vertical-menu.css")
 public class AdminView extends HorizontalLayout {

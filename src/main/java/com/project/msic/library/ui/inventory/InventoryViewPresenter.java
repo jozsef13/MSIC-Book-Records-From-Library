@@ -16,8 +16,8 @@ import de.codecamp.vaadin.serviceref.ServiceRef;
 
 /**
  * This class provides an interface for the logical operations between the CRUD
- * view, its parts like the product editor form and the data source, including
- * fetching and saving products.
+ * view, its parts like the book editor form and the data source, including
+ * fetching and saving books.
  *
  * Having this separate from the view makes it easier to test various parts of
  * the system separately, and to e.g. provide alternative views for the same
@@ -58,10 +58,10 @@ public class InventoryViewPresenter implements Serializable {
 	}
 
 	/**
-	 * Updates the fragment without causing InventoryViewLogic navigator to change
-	 * view. It actually appends the productId as a parameter to the URL. The
+	 * Updates the fragment without causing this class navigator to change
+	 * view. It actually appends the bookId as a parameter to the URL. The
 	 * parameter is set to keep the view state the same during e.g. a refresh and to
-	 * enable bookmarking of individual product selections.
+	 * enable bookmarking of individual book selections.
 	 *
 	 */
 	private void setFragmentParameter(String bookId) {
@@ -76,9 +76,9 @@ public class InventoryViewPresenter implements Serializable {
 	}
 
 	/**
-	 * Opens the product form and clears its fields to make it ready for entering a
-	 * new product if productId is null, otherwise loads the product with the given
-	 * productId and shows its data in the form fields so the user can edit them.
+	 * Opens the book form and clears its fields to make it ready for entering a
+	 * new book if bookId is null, otherwise loads the book with the given
+	 * bookId and shows its data in the form fields so the user can edit them.
 	 *
 	 * 
 	 * @param bookId

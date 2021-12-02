@@ -10,9 +10,7 @@ import com.vaadin.flow.server.VaadinSession;
 import de.codecamp.vaadin.serviceref.ServiceRef;
 
 /**
- * Default mock implementation of {@link AccessControl}. This implementation
- * accepts any string as a user if the password is the same string, and
- * considers the user "admin" as the only administrator.
+ * Default mock implementation of {@link AccessControl}. 
  */
 @Component
 public class AcessControlImpl implements AccessControl {

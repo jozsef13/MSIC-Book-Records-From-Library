@@ -28,11 +28,6 @@ public class BookGrid extends Grid<Book> {
 		setSizeFull();
 		addColumn(Book::getTitle).setHeader(Messages.BOOK_TITLE_COLUMN).setFlexGrow(20).setSortable(true).setKey(Messages.BOOKNAME);
 
-		// Add an traffic light icon in front of availability
-		// Three css classes with the same names of three availability values,
-		// Available, Coming and Discontinued, are defined in shared-styles.css
-		// and are
-		// used here in availabilityTemplate.
 		final String availabilityTemplate = "<iron-icon icon=\"vaadin:circle\" class-name=\"[[item.availability]]\"></iron-icon> [[item.availability]]";
 		addColumn(TemplateRenderer.<Book>of(availabilityTemplate).withProperty(Messages.AVAILABILITY_ID_TEXT,
 				book -> book.getAvailability().toString())).setHeader(Messages.AVAILABILITY_TEXT)
