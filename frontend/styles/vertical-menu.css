@@ -1,0 +1,28 @@
+$base-color: rgba(37.6 %, 23.5 %, 72.9 %, .8);
+.vertical-menu { 
+	 /*@include font("JF Flat", "../../afroTheme/fonts/jf_flat");*/
+	 
+	$v-font-family: "JF Flat", "Open Sans", sans-serif;
+	font-family: $v-font-family; 
+	.v-button { 
+		width : 100%;
+		height: 89px;
+		background: darken($base-color, 30%);
+		color: lighten($base-color, 89%); 
+		.v-caption { 
+			font-size : 1.2em;
+			height: 100%;
+		}
+		.v-icon {
+			font-size: 2em;
+		}
+	}
+}
+.v-label {
+		width: 100%;
+		height: 100%;
+		line-height: 100%;
+		background-color: lighten($base-color, 30%);
+		text-align: CENTER;
+		font-size: 4em;
+}
