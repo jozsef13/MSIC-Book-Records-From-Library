@@ -49,6 +49,7 @@ public class InventoryViewPresenter implements Serializable {
 		if (!AccessControlFactory.getInstance().createAccessControl(userService)
 				.isUserInRole(AccessControl.ADMIN_ROLE_NAME)) {
 			view.setNewBookEnabled(false);
+			view.setNewBookButtonVisible(false);
 		}
 	}
 
@@ -105,10 +106,18 @@ public class InventoryViewPresenter implements Serializable {
 		}
 	}
 
+	/**
+	 * @param bookId the id of the book to search for
+	 * @return the book from the database
+	 */
 	private Book findBook(Long bookId) {
 		return bookService.get().getById(bookId);
 	}
 
+	/**
+	 * @param book representing the object that will be save/updated after 
+	 * being created/modified
+	 */
 	public void saveBook(Book book) {
 		final boolean newBook = book.isNewBook();
 		view.clearSelection();
@@ -117,6 +126,9 @@ public class InventoryViewPresenter implements Serializable {
 		view.showNotification(book.getTitle() + (newBook ? " created" : " updated"));
 	}
 
+	/**
+	 * @param book representing the object that will be removed
+	 */
 	public void deleteBook(Book book) {
 		view.clearSelection();
 		view.removeBook(book);

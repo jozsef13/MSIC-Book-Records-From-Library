@@ -9,6 +9,10 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.Version;
 
+/**
+ * @author Simon Jozsef-Gabriel
+ * The class representing the About page of the application
+ */
 @Route(value = "About", layout = MainLayout.class)
 @PageTitle("About")
 public class AboutView extends HorizontalLayout {

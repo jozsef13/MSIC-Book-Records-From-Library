@@ -21,24 +21,28 @@ import de.codecamp.vaadin.serviceref.ServiceRef;
 @Component
 public class LibraryInitListener implements VaadinServiceInitListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4010422433242452549L;
+	/**
+	 * Service used for authentication and for storing the current user details
+	 */
 	@Autowired
 	private ServiceRef<UserService> userService;
 
+	/**
+	 * ServiceInitEvent event - parameter used to trigger an event to redirect the
+	 * user to the login page, if it is not authenticated
+	 * 
+	 * Initialization of the user service, used for authentication and authorization
+	 */
 	@Override
 	public void serviceInit(ServiceInitEvent event) {
 		final AccessControl accessControl = AccessControlFactory.getInstance().createAccessControl(userService);
 
-		event.getSource().addUIInitListener(uiInitEvent -> {
-			uiInitEvent.getUI().addBeforeEnterListener(enterEvent -> {
-				if (!accessControl.isUserSignedIn() && !LoginScreen.class.equals(enterEvent.getNavigationTarget())) {
-					enterEvent.rerouteTo(LoginScreen.class);
-				}
-			});
-		});
+		event.getSource().addUIInitListener(uiInitEvent -> uiInitEvent.getUI().addBeforeEnterListener(enterEvent -> {
+			if (!accessControl.isUserSignedIn() && !LoginScreen.class.equals(enterEvent.getNavigationTarget())) {
+				enterEvent.rerouteTo(LoginScreen.class);
+			}
+		}));
 	}
 
 }

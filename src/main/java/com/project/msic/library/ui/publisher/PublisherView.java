@@ -23,6 +23,13 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 
 import de.codecamp.vaadin.serviceref.ServiceRef;
 
+/**
+ * @author Simon Jozsef-Gabriel
+ * The class representing the Publisher view, which
+ * is a component appearing in the Admin page
+ * It is responsible with the display of the CRUD
+ * method over the Category objects
+ */
 public class PublisherView extends VerticalLayout {
 
 	/**
@@ -30,9 +37,18 @@ public class PublisherView extends VerticalLayout {
 	 */
 	private static final long serialVersionUID = -6519051398584097567L;
 
+	/**
+	 * The list which is displayed in the application under the Admin page
+	 */
 	private final VirtualList<Publisher> publisherListing;
+	/**
+	 * The data provider, which retrieves and displays the list of Publishers
+	 */
 	private final ListDataProvider<Publisher> publisherDataProvider;
 	private final Button newPublisherButton;
+	/**
+	 * The service which holds the business implementation for the Publisher
+	 */
 	private ServiceRef<PublisherService> publisherService;
 
 	public PublisherView(ServiceRef<PublisherService> publisherService2) {

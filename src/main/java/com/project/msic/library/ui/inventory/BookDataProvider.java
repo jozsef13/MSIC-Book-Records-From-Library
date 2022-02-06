@@ -90,6 +90,13 @@ public class BookDataProvider extends ListDataProvider<Book> {
 		return object != null && object.toString().toLowerCase(Locale.ENGLISH).contains(filterText);
 	}
 
+	/**
+	 * Sets the filter to use for this data provider and refreshes data.
+	 * <p>
+	 * Filter is compared for publisher.
+	 *
+	 * @param publisher the publisher to filter by, never null
+	 */
 	public void setPublisherFilter(Publisher publisher) {
 		if (publisher == null) {
 			this.publisherText = "";
@@ -103,6 +110,13 @@ public class BookDataProvider extends ListDataProvider<Book> {
 		setFilter(book -> passesFilter(book.getPublisher().getName(), this.publisherText));
 	}
 
+	/**
+	 * Sets the filter to use for this data provider and refreshes data.
+	 * <p>
+	 * Filter is compared for author.
+	 *
+	 * @param author the publisher to filter by, never null
+	 */
 	public void setAuthorFilter(Author author) {
 		if (author == null) {
 			this.authorText = "";
@@ -116,6 +130,13 @@ public class BookDataProvider extends ListDataProvider<Book> {
 		setFilter(book -> passesFilter(book.getAuthor().getName(), this.authorText));
 	}
 
+	/**
+	 * Sets the filter to use for this data provider and refreshes data.
+	 * <p>
+	 * Filter is compared for category.
+	 *
+	 * @param author the category to filter by, never null
+	 */
 	public void setCategoryFilter(Category category) {
 		if (category == null) {
 			this.categoryText = "";
