@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.project.msic.library.model.Author;
 
+/**
+ * @author Simon Jozsef-Gabriel
+ * Interface representing the Author repository, the database tier
+ */
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
 

@@ -23,15 +23,31 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 
 import de.codecamp.vaadin.serviceref.ServiceRef;
 
+/**
+ * @author Simon Jozsef-Gabriel
+ * The class representing the Author view, which
+ * is a component appearing in the Admin page
+ * It is responsible with the display of the CRUD
+ * method over the Author objects
+ */
 public class AuthorView extends VerticalLayout {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8269710859618127684L;
 
+	/**
+	 * The list which is displayed in the application under the Admin page
+	 */
 	private final VirtualList<Author> authorListing;
+	/**
+	 * The data provider, which retrieves and displays the list of Authors
+	 */
 	private final ListDataProvider<Author> authorDataProvider;
 	private final Button newAuthorButton;
+	/**
+	 * The service which holds the business implementation for the Author
+	 */
 	private ServiceRef<AuthorService> authorService;
 
 	public AuthorView(ServiceRef<AuthorService> authorService2) {

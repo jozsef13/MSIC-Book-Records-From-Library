@@ -5,7 +5,10 @@ import com.project.msic.library.service.UserService;
 import de.codecamp.vaadin.serviceref.ServiceRef;
 
 public class AccessControlFactory {
+	// Instance of the AccessControlFactory, applying Singleton and Factory design
+	// patterns
 	private static final AccessControlFactory INSTANCE = new AccessControlFactory();
+	//The access control object which will be returned by the factory
 	private AccessControl accessControl;
 
 	private AccessControlFactory() {

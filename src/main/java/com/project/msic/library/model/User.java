@@ -1,5 +1,7 @@
 package com.project.msic.library.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+/**
+ * @author Simon Jozsef-Gabriel 
+ * User entity POJO class used for the representation of the objects from the LBR_USER table
+ */
 @Entity
 @Table(name = "LBR_USER")
 public class User {
@@ -19,7 +25,7 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
-	private String birthDate;
+	private LocalDate birthDate;
 	private String country = "Romania";
 	private String county = "Dolj";
 	private String city = "Craiova";
@@ -85,11 +91,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
