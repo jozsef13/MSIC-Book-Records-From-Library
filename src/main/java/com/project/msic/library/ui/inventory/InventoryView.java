@@ -52,7 +52,6 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 	public static final String VIEW_NAME = "Inventory";
 	private BookGrid grid;
 	private BookForm form;
-	private TextField filter;
 	private Select<Category> categoryFilter;
 	private Select<Author> authorFilter;
 	private Select<Publisher> publisherFilter;
@@ -71,9 +70,6 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 	private ServiceRef<BookService> bookService;
 	@Autowired
 	private ServiceRef<UserService> userService;
-
-	public InventoryView() {
-	}
 
 	@PostConstruct
 	public void init() {
@@ -106,18 +102,27 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 		presenter.init();
 	}
 
+	/**
+	 * Initialization of the elements related to Publisher
+	 */
 	private void initPublisherRelatedElements() {
 		Collection<Publisher> publishers = publisherService.get().getAll();
 		form.setPublishers(publishers);
 		initPublisherFilter();
 	}
 
+	/**
+	 * Initialization of the elements related to Author
+	 */
 	private void initAuthorRelatedElements() {
 		Collection<Author> authors = authorService.get().getAll();
 		form.setAuthors(authors);
 		initAuthorFilter();
 	}
 
+	/**
+	 * Initialization of the elements related to Category
+	 */
 	private void initCategoryRelatedElements() {
 		Collection<Category> categories = categoryService.get().getAll();
 		form.setCategories(categories);
@@ -125,7 +130,7 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 	}
 
 	public HorizontalLayout createTopBar() {
-		filter = new TextField();
+		TextField filter = new TextField();
 		filter.setPlaceholder(Messages.FILTER_PLACEHOLDER_TEXT);
 		// Apply the filter to grid's data provider. TextField value is never
 		filter.addValueChangeListener(event -> dataProvider.setTextFilter(event.getValue()));
@@ -148,7 +153,6 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 		topLayout.add(publisherFilter);
 		topLayout.add(newBookButton);
 		topLayout.setVerticalComponentAlignment(Alignment.START, filter);
-//		topLayout.expand(filter);
 
 		setCategoryFilterItems();
 		setAuthorFilterItems();
@@ -157,10 +161,14 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 		return topLayout;
 	}
 
+	/**
+	 * Method which initializes the publisher filter with values 
+	 * and with the logic
+	 */
 	private void setPublisherFilterItems() {
 		publisherFilter.setItems(publisherService.get().getAll());
 		publisherFilter.setItemLabelGenerator(pub -> {
-			if(pub == null || pub.getName() == null) {
+			if (pub == null || pub.getName() == null) {
 				return "Select a publisher";
 			} else {
 				return pub.getName();
@@ -169,10 +177,14 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 		publisherFilter.addValueChangeListener(event -> dataProvider.setPublisherFilter(event.getValue()));
 	}
 
+	/**
+	 * Method which initializes the author filter with values 
+	 * and with the logic
+	 */
 	private void setAuthorFilterItems() {
 		authorFilter.setItems(authorService.get().getAll());
 		authorFilter.setItemLabelGenerator(auth -> {
-			if(auth == null || auth.getName() == null) {
+			if (auth == null || auth.getName() == null) {
 				return "Select an author";
 			} else {
 				return auth.getName();
@@ -181,10 +193,14 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 		authorFilter.addValueChangeListener(event -> dataProvider.setAuthorFilter(event.getValue()));
 	}
 
+	/**
+	 * Method which initializes the category filter with values 
+	 * and with the logic
+	 */
 	private void setCategoryFilterItems() {
 		categoryFilter.setItems(categoryService.get().getAll());
 		categoryFilter.setItemLabelGenerator(cat -> {
-			if(cat == null || cat.getName() == null) {
+			if (cat == null || cat.getName() == null) {
 				return "Select a category";
 			} else {
 				return cat.getName();
@@ -238,6 +254,10 @@ public class InventoryView extends HorizontalLayout implements HasUrlParameter<S
 	 */
 	public void setNewBookEnabled(boolean enabled) {
 		newBookButton.setEnabled(enabled);
+	}
+	
+	public void setNewBookButtonVisible(boolean visible) {
+		newBookButton.setVisible(visible);
 	}
 
 	/**

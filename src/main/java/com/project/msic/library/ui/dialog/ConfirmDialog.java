@@ -9,6 +9,10 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+/**
+ * @author Simon Jozsef-Gabriel
+ * Confirm dialog which appears when confirming is needed
+ */
 public class ConfirmDialog extends Dialog {
 	/**
 	 * 

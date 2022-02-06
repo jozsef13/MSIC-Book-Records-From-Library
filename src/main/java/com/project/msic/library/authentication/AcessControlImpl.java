@@ -10,7 +10,7 @@ import com.vaadin.flow.server.VaadinSession;
 import de.codecamp.vaadin.serviceref.ServiceRef;
 
 /**
- * Default mock implementation of {@link AccessControl}. 
+ * Default mock implementation of {@link AccessControl}.
  */
 @Component
 public class AcessControlImpl implements AccessControl {
@@ -21,7 +21,7 @@ public class AcessControlImpl implements AccessControl {
 	private static final long serialVersionUID = -8799282120804999512L;
 
 	private ServiceRef<UserService> userService;
-	
+
 	public AcessControlImpl(ServiceRef<UserService> userService2) {
 		this.userService = userService2;
 	}
@@ -32,7 +32,7 @@ public class AcessControlImpl implements AccessControl {
 			return false;
 		}
 
-		if (!username.equals(ADMIN_USERNAME) && !username.equals(password)) {
+		if (!username.equals(password)) {
 			return false;
 		}
 
@@ -73,6 +73,17 @@ public class AcessControlImpl implements AccessControl {
 	public void signOut() {
 		VaadinSession.getCurrent().getSession().invalidate();
 		UI.getCurrent().navigate("");
+	}
+
+	@Override
+	public void createUser(User userBean) {
+		userService.get().saveUpdate(userBean);
+		signIn(userBean.getUserName(), userBean.getPassword());
+	}
+
+	@Override
+	public UserService getUserService() {
+		return userService.get();
 	}
 
 }

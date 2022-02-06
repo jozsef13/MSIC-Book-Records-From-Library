@@ -21,7 +21,7 @@ import de.codecamp.vaadin.serviceref.ServiceRef;
 /**
  * Admin view that is registered dynamically on admin user login.
  * <p>
- * Allows CRUD operations for the book categories, atuhors and publishers.
+ * Allows CRUD operations for the book categories, authors and publishers.
  */
 @CssImport("./styles/vertical-menu.css")
 public class AdminView extends HorizontalLayout {
@@ -35,17 +35,12 @@ public class AdminView extends HorizontalLayout {
 	private PublisherView publisherView;
 	private AuthorView authorView;
 
-	private VerticalLayout verticalMenu;
-
 	@Autowired
 	private ServiceRef<AuthorService> authorService;
 	@Autowired
 	private ServiceRef<CategoryService> categoryService;
 	@Autowired
 	private ServiceRef<PublisherService> publisherService;
-
-	public AdminView() {
-	}
 
 	@PostConstruct
 	public void init() {
@@ -66,7 +61,7 @@ public class AdminView extends HorizontalLayout {
 	}
 
 	private void initButtons() {
-		verticalMenu = new VerticalLayout();
+		VerticalLayout verticalMenu = new VerticalLayout();
 
 		Button categoriesButton = new Button(Messages.ADMIN_VIEW_CATEGORIES_MENU_LABEL);
 		categoriesButton.addClickListener(event -> {

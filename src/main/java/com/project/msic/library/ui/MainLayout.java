@@ -102,7 +102,7 @@ public class MainLayout extends AppLayout implements RouterLayout {
 		super.onAttach(attachEvent);
 
 		// User can quickly activate logout with Ctrl+L
-		attachEvent.getUI().addShortcutListener(() -> logout(), Key.KEY_L, KeyModifier.CONTROL);
+		attachEvent.getUI().addShortcutListener(this::logout, Key.KEY_L, KeyModifier.CONTROL);
 
 		// add the admin view menu item if user has admin role
 		final AccessControl accessControl = AccessControlFactory.getInstance().createAccessControl();

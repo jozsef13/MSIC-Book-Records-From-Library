@@ -1,5 +1,6 @@
 package com.project.msic.library.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,10 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * @author Simon Jozsef-Gabriel 
+ * Author entity POJO class used for the representation of the objects from the LBR_AUTHOR table
+ */
 @Entity
 @Table(name = "LBR_AUTHOR")
-public class Author {
+public class Author implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3795431677958203496L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long authorId = -1L;

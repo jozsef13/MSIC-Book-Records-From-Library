@@ -1,6 +1,8 @@
 package com.project.msic.library.model;
 
+import java.io.Serializable;
 import java.util.Objects;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,10 +13,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * @author Simon Jozsef-Gabriel 
+ * Category entity POJO class used for the representation of the objects from the LBR_CATEGORY table
+ */
 @Entity
 @Table(name = "LBR_CATEGORY")
-public class Category {
+public class Category implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7062992072861469391L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long categoryId = -1L;

@@ -21,7 +21,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
 /**
- * A form for editing a single book.
+ * A form for editing and creating a single book.
  */
 public class BookForm extends Div {
 	/**
@@ -32,6 +32,7 @@ public class BookForm extends Div {
 	private final VerticalLayout content;
 
 	private final TextField title;
+	private final TextField year;
 	private final Select<BookAvailability> availability;
 	private final Select<Category> category;
 	private final Select<Author> author;
@@ -60,6 +61,12 @@ public class BookForm extends Div {
 		title.setRequired(true);
 		title.setValueChangeMode(ValueChangeMode.EAGER);
 		content.add(title);
+		
+		year = new TextField(Messages.YEARS_TEXT_LABEL);
+		year.setWidth("100%");
+		year.setRequired(true);
+		year.setValueChangeMode(ValueChangeMode.EAGER);
+		content.add(year);
 
 		availability = new Select<>();
 		availability.setLabel(Messages.AVAILABILITY_TEXT);

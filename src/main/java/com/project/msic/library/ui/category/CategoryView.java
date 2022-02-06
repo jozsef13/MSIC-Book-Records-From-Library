@@ -23,15 +23,31 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 
 import de.codecamp.vaadin.serviceref.ServiceRef;
 
+/**
+ * @author Simon Jozsef-Gabriel
+ * The class representing the Category view, which
+ * is a component appearing in the Admin page
+ * It is responsible with the display of the CRUD
+ * method over the Category objects
+ */
 public class CategoryView extends VerticalLayout {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2649468604079188520L;
 
+	/**
+	 * The list which is displayed in the application under the Admin page
+	 */
 	private final VirtualList<Category> categoriesListing;
+	/**
+	 * The data provider, which retrieves and displays the list of Categories
+	 */
 	private final ListDataProvider<Category> categoryDataProvider;
 	private final Button newCategoryButton;
+	/**
+	 * The service which holds the business implementation for the Category
+	 */
 	private ServiceRef<CategoryService> categoryService;
 
 	public CategoryView(ServiceRef<CategoryService> categoryService2) {

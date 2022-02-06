@@ -27,7 +27,7 @@ public class BookGrid extends Grid<Book> {
 	public BookGrid() {
 		setSizeFull();
 		addColumn(Book::getTitle).setHeader(Messages.BOOK_TITLE_COLUMN).setFlexGrow(20).setSortable(true).setKey(Messages.BOOKNAME);
-
+		addColumn(Book::getYear).setHeader(Messages.YEAR_COLUMN).setFlexGrow(20).setSortable(true).setKey(Messages.BOOKYEAR);
 		final String availabilityTemplate = "<iron-icon icon=\"vaadin:circle\" class-name=\"[[item.availability]]\"></iron-icon> [[item.availability]]";
 		addColumn(TemplateRenderer.<Book>of(availabilityTemplate).withProperty(Messages.AVAILABILITY_ID_TEXT,
 				book -> book.getAvailability().toString())).setHeader(Messages.AVAILABILITY_TEXT)
@@ -45,20 +45,24 @@ public class BookGrid extends Grid<Book> {
 	}
 
 	private void setColumnVisibility(int width) {
+		//Responsive screen
 		if (width > 800) {
 			getColumnByKey(Messages.BOOKNAME).setVisible(true);
+			getColumnByKey(Messages.BOOKYEAR).setVisible(true);
 			getColumnByKey(Messages.AVAILABILITY_ID_TEXT).setVisible(true);
 			getColumnByKey(Messages.CATEGORY).setVisible(true);
 			getColumnByKey(Messages.PUBLISHER).setVisible(true);
 			getColumnByKey(Messages.AUTHOR).setVisible(true);
 		} else if (width > 550) {
 			getColumnByKey(Messages.BOOKNAME).setVisible(true);
+			getColumnByKey(Messages.BOOKYEAR).setVisible(true);
 			getColumnByKey(Messages.AVAILABILITY_ID_TEXT).setVisible(true);
 			getColumnByKey(Messages.CATEGORY).setVisible(false);
 			getColumnByKey(Messages.PUBLISHER).setVisible(false);
 			getColumnByKey(Messages.CATEGORY).setVisible(true);
 		} else {
 			getColumnByKey(Messages.BOOKNAME).setVisible(true);
+			getColumnByKey(Messages.BOOKYEAR).setVisible(true);
 			getColumnByKey(Messages.AVAILABILITY_ID_TEXT).setVisible(true);
 			getColumnByKey(Messages.CATEGORY).setVisible(false);
 			getColumnByKey(Messages.PUBLISHER).setVisible(false);
